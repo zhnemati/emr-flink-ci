@@ -25,7 +25,7 @@ do
     cd "${array_of_project_names[$i]}-jars"
     aws s3 cp ${array_of_project_names[$i]}.jar s3://flink-jars-emr/${array_of_project_names[$i]}/${array_of_project_names[$i]}.jar
     application_id=$(python3 get_running_jobs_on_yarn_cluster.py "$array_of_project_names[$i]" 2>&1)
-    aws emr add-steps --cluster-id j-1VRZOM0PC96OK --steps Type=CUSTOM_JAR,Name="$array_of_project_names[$i]",Jar=command-runner.jar,Args="bash","-c"," yarn application -kill "$application_id" && sudo aws s3 cp s3://flink-jars-emr/${array_of_project_names[$i]}/${array_of_project_names[$i]}.jar  /flink-jars/ --region me-south-1 && /usr/lib/flink/bin/flink run-application -t yarn-application /flink-jars/${array_of_project_names[$i]}.jar"
+    aws emr add-steps --cluster-id j-XXXXXXXXX --steps Type=CUSTOM_JAR,Name="$array_of_project_names[$i]",Jar=command-runner.jar,Args="bash","-c"," yarn application -kill "$application_id" && sudo aws s3 cp s3://flink-jars-emr/${array_of_project_names[$i]}/${array_of_project_names[$i]}.jar  /flink-jars/ --region me-south-1 && /usr/lib/flink/bin/flink run-application -t yarn-application /flink-jars/${array_of_project_names[$i]}.jar"
     cd ../..
     fi
 done
