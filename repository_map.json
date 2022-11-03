@@ -1,0 +1,4 @@
+{
+    "locations-processor":"locations-processor",
+    "locations-processor-with-kinesis-sink":"locations-processor-with-kinesis-sink"
+}
